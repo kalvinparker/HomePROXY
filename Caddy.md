@@ -1,24 +1,21 @@
 ### **Caddy as the All-in-One Solution**
 
 In this new model, Caddy will handle the roles that previously required **three separate components**:
-1.  **The OPNsense Dynamic DNS Client:** Caddy will now handle updating your DDNS provider.
-2.  **The OPNsense/NPM ACME Client:** Caddy has built-in, fully automatic HTTPS. It will request and renew Let's Encrypt certificates for all your sites without any configuration from you.
-3.  **Nginx Proxy Manager:** Caddy will be your reverse proxy.
+1.  **Dynamic DNS Client:** Caddy will now handle updating your DDNS provider.
+2.  **Cert Renewal** Caddy has built-in, fully automatic HTTPS. It will request and renew Let's Encrypt certificates for all your sites without any configuration from you.
+3.  **Proxy Manager:** Caddy will be your reverse proxy.
 
 **The traffic flow will be:**
 `Internet -> OPNsense (Port Forward 80/443) -> Caddy Server (in DMZ) -> Internal Services (Vault, etc.)`
-
-This is a much cleaner and more modern setup.
-
 ---
 
-### **Action Plan: Installing and Configuring Caddy**
+### **Installing and Configuring Caddy**
 
 This plan assumes your Caddy server is the same machine in the DMZ at `192.168.83.2`.
 
 **Step 1: Disable Old Services in OPNsense**
 
-To prevent conflicts, let's turn off the old DDNS client.
+To prevent conflicts, turn off any old DDNS client.
 1.  In OPNsense, go to **Services > Dynamic DNS > Settings**.
 2.  **Disable** or delete the client you had configured for DuckDNS. We no longer need it.
 
@@ -63,36 +60,33 @@ This is the key step. We will create a `docker-compose.yml` file that tells Dock
 2.  Paste the following configuration into the nano editor. **You will need to replace the placeholders.**
 
     ```yaml
-    version: "3.7"
-
     services:
-      caddy:
-        image: caddy:2-builder
-        container_name: caddy-builder
-        working_dir: /app
-        volumes:
-          - ./caddy-bin:/app # Stores the custom caddy binary
-        command: |
-          caddy build \
-            --output /app/caddy \
-            --with github.com/mholt/caddy-dynamicdns
+  caddy-builder:
+    image: caddy:2-builder
+    container_name: caddy-builder
+    working_dir: /app
+    volumes:
+      - ./caddy-bin:/app
+    command: |
+      caddy build \
+        --output /app/caddy \
+        --with github.com/mholt/caddy-dynamicdns
 
-      reverse-proxy:
-        image: caddy:latest
-        container_name: caddy
-        restart: unless-stopped
-        ports:
-          - "80:80"
-          - "443:443"
-          - "443:443/udp" # Required for HTTP/3
-        volumes:
-          - ./caddy-bin/caddy:/usr/bin/caddy # Use the custom binary
-          - ./Caddyfile:/etc/caddy/Caddyfile
-          - ./data:/data
-          - ./config:/config
-        environment:
-          # --- ADD YOUR DUCKDNS TOKEN HERE ---
-          - DUCKDNS_TOKEN=your_duckdns_token_here
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./caddy-bin/caddy:/usr/bin/caddy
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./data:/data
+      - ./config:/config
+    environment:
+      - DUCKDNS_TOKEN=your_duckdns_token_here
     ```
 
     **Explanation:** This is a multi-stage setup.
