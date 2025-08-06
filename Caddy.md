@@ -6,7 +6,8 @@ In this new model, Caddy will handle the roles that previously required **three 
 3.  **Proxy Manager:** Caddy will be your reverse proxy.
 
 **The traffic flow will be:**
-`Internet -> OPNsense (Port Forward 80/443) -> Caddy Server (in DMZ) -> Internal Services (Vault, etc.)`
+`Internet -> ROUTER (Port Forward 80/443) -> Caddy Server (in DMZ) -> Internal Services (Vault, etc.)`
+
 ---
 
 ### **Installing and Configuring Caddy**
@@ -60,7 +61,7 @@ This is the key step. We will create a `docker-compose.yml` file that tells Dock
 2.  Paste the following configuration into the nano editor. **You will need to replace the placeholders.**
 
     ```yaml
-    services:
+services:
   caddy-builder:
     image: caddy:2-builder
     container_name: caddy-builder
