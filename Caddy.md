@@ -69,7 +69,7 @@ This is the robust method to build Caddy with the DDNS plugin.
     FROM caddy:${CADDY_VERSION}-builder AS builder
 
     RUN xcaddy build \
-        --with github.com/mholt/caddy-dynamicdns/providers/duckdns
+        --with github.com/mholt/caddy-dynamicdns
 
     FROM caddy:${CADDY_VERSION}
 
@@ -103,7 +103,7 @@ This file will now use our `Dockerfile` to build and run the Caddy container.
           - ./data:/data
           - ./config:/config
         environment:
-          - DUCKDNS_TOKEN=your_duckdns_token_here
+          - DUCKDNS_TOKEN=d5d32851-0eee-4581-bc3e-a09e2c3c14f9
     ```
 
 3.  Save and exit.
