@@ -69,7 +69,7 @@ This is the robust method to build Caddy with the DDNS plugin.
     FROM caddy:${CADDY_VERSION}-builder AS builder
 
     RUN xcaddy build \
-        --with github.com/mholt/caddy-dynamicdns
+        --with github.com/mholt/caddy-dynamicdns/providers/duckdns
 
     FROM caddy:${CADDY_VERSION}
 
