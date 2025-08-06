@@ -116,7 +116,7 @@ The official plugin has a slightly different, cleaner syntax in the `Caddyfile`.
     #
     {
         # Email for Let's Encrypt account
-        email your-email@example.com
+        email parkerk6648@protonmail.com
     }
 
     #
@@ -125,13 +125,13 @@ The official plugin has a slightly different, cleaner syntax in the `Caddyfile`.
 
     # Proxy Host for Vaultwarden
     # This will have its SSL managed automatically by the tls block below
-    vault.your-noip-domain.ddns.net {
+    vault.83.ddns.net {
         reverse_proxy 192.168.1.6:8080
     }
 
     # Proxy Host for Portainer
-    portainer.your-noip-domain.ddns.net {
-        reverse_proxy 192.168.83.2:9000
+    portainer.83.ddns.net {
+        reverse_proxy 192.168.83.2:9443
     }
 
     #
