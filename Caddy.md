@@ -140,7 +140,7 @@ This is where you define everything Caddy does.
     {
         # Configure Dynamic DNS to update your DuckDNS domain
         dynamic_dns {
-            provider duckdns {d5d32851-0eee-4581-bc3e-a09e2c3c14f9}
+            provider duckdns {$DUCKDNS_TOKEN}
             domains {
                 i83.duckdns.org
             }
