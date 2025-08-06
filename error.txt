@@ -1,52 +1,220 @@
-homeuser@HomePROXY:~/caddy-project $ docker compose up --build -d
-#1 [internal] load local bake definitions
-#1 reading from stdin 517B done
-#1 DONE 0.0s
-
-#2 [internal] load build definition from Dockerfile
-#2 transferring dockerfile:
-#2 transferring dockerfile: 252B 0.4s done
-#2 DONE 1.3s
-
-#3 [internal] load metadata for docker.io/library/caddy:2
-#3 ...
-
-#4 [internal] load metadata for docker.io/library/caddy:2-builder
-#4 DONE 0.1s
-
-#3 [internal] load metadata for docker.io/library/caddy:2
-#3 DONE 3.8s
-
-#5 [internal] load .dockerignore
-#5 transferring context:
-#5 transferring context: 2B 0.0s done
-#5 DONE 0.6s
-
-#6 [stage-1 1/2] FROM docker.io/library/caddy:2@sha256:e23538fceb12f3f8cc97a174844aa99bdea7715023d6e088028850fd0601e2e2
-#6 DONE 0.0s
-
-#7 [builder 1/2] FROM docker.io/library/caddy:2-builder
-#7 DONE 0.0s
-
-#8 [builder 2/2] RUN xcaddy build     --with github.com/mholt/caddy-dynamicdns
-#8 CACHED
-
-#9 [stage-1 2/2] COPY --from=builder /usr/bin/caddy /usr/bin/caddy
-#9 CACHED
-
-#10 exporting to image
-#10 exporting layers done
-#10 writing image sha256:60518acc5a297668a5765b8cde87a7bf50eb902112496e48e33b4bc8ce7ff3a6 0.0s done
-#10 naming to docker.io/library/caddy-project-caddy
-#10 naming to docker.io/library/caddy-project-caddy 0.7s done
-#10 DONE 1.1s
-
-#11 resolving provenance for metadata file
-#11 DONE 0.1s
-[+] Running 3/3
- ✔ caddy-project-caddy            Built                                    0.0s 
- ✔ Network caddy-project_default  Creat...                                 1.2s 
- ✔ Container caddy                Started                                  6.6s 
-homeuser@HomePROXY:~/caddy-project $ nano Caddyfile
-homeuser@HomePROXY:~/caddy-project $ docker compose exec caddy caddy reload
-Error response from daemon: Container 82cc45e3bb7f2e8a7ade86bb85a8b3cdfd9e0dade3f82bc6cc3f2aaa7b3ba60a is restarting, wait until the container is running
+homeuser@HomePROXY:~/caddy-project $ docker compose restart caddy
+[+] Restarting 1/1
+ ✔ Container caddy  Started                                                8.0s 
+homeuser@HomePROXY:~/caddy-project $ docker compose logs caddy
+caddy  | {"level":"info","ts":1754473943.946773,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473943.9488676,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473943.9494,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473943.9496171,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754473947.7147038,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473947.7166436,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473947.7173965,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473947.71759,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754473954.4878042,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473954.4904175,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473954.4910388,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473954.4915237,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754473958.1634793,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473958.1652365,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473958.1657608,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473958.1659172,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754473962.2551515,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473962.2570722,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473962.258303,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473962.258493,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754473967.0440474,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473967.045856,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473967.046671,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473967.0471745,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754473972.740655,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473972.742344,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473972.7428906,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473972.7430823,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754473981.5362222,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473981.5380442,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473981.5386238,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473981.5387924,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754473997.4251742,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754473997.4268925,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754473997.4273734,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754473997.4275873,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754474026.1180916,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474026.1203067,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474026.1214178,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474026.1218305,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754474079.822651,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474079.8241765,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474079.8246078,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474079.8247614,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754474142.7939382,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474142.796082,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474142.796789,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474142.7969716,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754474205.6318166,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474205.6339378,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474205.634662,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474205.6348834,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754474268.378173,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474268.380152,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474268.3808692,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474268.381131,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: EOF
+caddy  | {"level":"info","ts":1754474331.2480586,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474331.2499716,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474331.2506568,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474331.2518861,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474394.982535,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474394.9877117,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474394.9901547,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474394.9922352,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474457.5225043,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474457.5242653,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474457.524788,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474457.5255585,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474519.7998383,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474519.8021185,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474519.802984,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474519.8040328,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474582.2485347,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474582.250425,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474582.251251,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474582.252242,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474644.5405846,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474644.5424204,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474644.5429482,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474644.5438159,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474706.8738523,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474706.8757758,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474706.8762925,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474706.8772013,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474769.1730678,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474769.1755693,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474769.1760678,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474769.1771834,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474831.4831343,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474831.4847748,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474831.48529,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474831.4861314,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474893.8174794,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474893.8190439,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474893.819562,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474893.8205223,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754474956.189374,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754474956.1909804,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754474956.191616,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754474956.1926038,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475018.4972117,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475018.4989407,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475018.4995532,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475018.5003784,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475080.772569,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475080.7741714,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475080.7751193,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475080.7759907,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475143.0936098,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475143.0958092,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475143.0963633,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475143.0979922,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475205.41168,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475205.4133394,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475205.4138572,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475205.414722,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475267.896697,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475267.8984406,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475267.8990202,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475267.8998039,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475330.2050822,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475330.2066576,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475330.2072124,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475330.2080326,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475392.4872932,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475392.4896364,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475392.490322,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475392.4917083,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475454.8035765,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475454.8051062,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475454.805584,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475454.806414,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475517.052246,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475517.0560987,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475517.056673,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475517.0575225,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475579.3923545,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475579.3961236,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475579.3974826,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475579.401759,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475641.678647,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475641.6813061,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475641.6820428,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475641.682974,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475704.1572065,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475704.1597414,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475704.161078,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475704.1623802,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475770.1718311,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475770.1757565,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475770.1764693,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475770.1782413,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475774.7270844,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475774.7296658,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475774.7302625,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475774.7317953,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475778.2198808,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475778.2216382,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475778.2222476,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475778.223056,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475782.1635773,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475782.1658604,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475782.166913,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475782.1681333,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475786.6900117,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475786.6919296,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475786.6925302,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475786.6934242,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+caddy  | {"level":"info","ts":1754475791.0396698,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754475791.041592,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754475791.04226,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754475791.043169,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: parsing caddyfile tokens for 'dynamic_dns': getting module named 'dns.providers.duckdns': module not registered: dns.providers.duckdns, at /etc/caddy/Caddyfile:7
+homeuser@HomePROXY:~/caddy-project $ 
