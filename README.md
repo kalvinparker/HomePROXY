@@ -1,15 +1,3 @@
----
-**SECURITY ASSESSMENT OF CADDY**
-
-`Product name and website:` Caddy v2.10.0 (custom build) | https://caddyserver.com/
-
-`Vendor name and website:` Caddy (Community/Open Source Project) | Lead developer: Matthew Holt (mholt)
-
-`Deployment keywords:` Web Server, Reverse Proxy, API Gateway, On-Premises, Enterprise System
-
-`Assessment Goals:` Threat modeling, Security impact assessment (specifically Supply Chain Risk), Risk mitigation strategies
-
----
 *(All documentation links will be "To be found" by me, as this is an open-source project.)*
 
 **Assessment Scope:**
