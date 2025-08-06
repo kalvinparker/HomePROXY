@@ -140,14 +140,14 @@ This is where you define everything Caddy does.
     {
         # Configure Dynamic DNS to update your DuckDNS domain
         dynamic_dns {
-            provider duckdns {$DUCKDNS_TOKEN}
+            provider duckdns {d5d32851-0eee-4581-bc3e-a09e2c3c14f9}
             domains {
-                your-duckdns-domain.duckdns.org
+                i83.duckdns.org
             }
         }
 
         # Email for Let's Encrypt account (important for recovery)
-        email your-email@example.com
+        email parkerk6649@protonmail.com
     }
 
     #
@@ -157,14 +157,14 @@ This is where you define everything Caddy does.
 
     # Proxy Host for Vaultwarden
     # Assumes your No-IP domain is a CNAME pointing to your DuckDNS domain.
-    vault.your-noip-domain.ddns.net {
+    vault.i83.duckdns.org {
         reverse_proxy 192.168.1.6:8080
     }
 
     # Proxy Host for Portainer
-    portainer.your-noip-domain.ddns.net {
-        # Portainer's web UI runs on port 9000 by default
-        reverse_proxy 192.168.83.2:9000
+    portainer.i83.duckdns.org {
+        # Portainer's web UI runs on port 9443 by default
+        reverse_proxy 192.168.83.2:9443
     }
 
     # Add more hosts as needed...
