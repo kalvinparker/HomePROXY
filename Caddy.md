@@ -60,7 +60,7 @@ This is the key step. We will create a `docker-compose.yml` file that tells Dock
 
 2.  Paste the following configuration into the nano editor. **You will need to replace the placeholders.**
 
-    ```yaml
+    ```
 services:
   caddy-builder:
     image: caddy:2-builder
