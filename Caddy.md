@@ -1,26 +1,30 @@
+### **Revised Guide: Caddy as the All-in-One Solution (v2.0)**
+
+Here is the rewritten, battle-tested guide that incorporates all our lessons learned.
+
 ### **Caddy as the All-in-One Solution**
 
-In this new model, Caddy will handle the roles that previously required **three separate components**:
-1.  **Dynamic DNS Client:** Caddy will now handle updating your DDNS provider.
-2.  **Cert Renewal** Caddy has built-in, fully automatic HTTPS. It will request and renew Let's Encrypt certificates for all your sites without any configuration from you.
-3.  **Proxy Manager:** Caddy will be your reverse proxy.
+In this new model, Caddy will handle the roles that previously required multiple separate components:
+1.  **Dynamic DNS Client:** Caddy will automatically keep your DDNS provider updated with your public IP address.
+2.  **Automatic HTTPS (Certificate Renewal):** Caddy has built-in, fully automatic HTTPS. It will request and renew trusted Let's Encrypt certificates for all your sites. No manual ACME configuration is needed.
+3.  **Reverse Proxy:** Caddy will securely route traffic to all your internal services.
 
-**The traffic flow will be:**
+**The Traffic Flow:**
 `Internet -> ROUTER (Port Forward 80/443) -> Caddy Server (in DMZ) -> Internal Services (Vault, etc.)`
 
 ---
 
 ### **Installing and Configuring Caddy**
 
-This plan assumes your Caddy server is the same machine in the DMZ at `192.168.83.2`.
+This plan assumes your Caddy server is on a dedicated machine in the DMZ at `192.168.83.2`.
 
-**Step 1: Disable Old Services in OPNsense**
+**Step 1: Disable Conflicting Services in OPNsense**
 
-To prevent conflicts, turn off any old DDNS client.
+To prevent conflicts, ensure no other service is trying to manage your DDNS.
 1.  In OPNsense, go to **Services > Dynamic DNS > Settings**.
-2.  **Disable** or delete the client you had configured for DuckDNS. We no longer need it.
+2.  **Disable** or **delete** any DDNS clients you had configured (e.g., for DuckDNS or No-IP).
 
-**Step 2: Install Docker and Docker Compose (if not already done)**
+**Step 2: Install Docker**
 
 If this is a fresh server, you'll need Docker.
 1.  Connect to your proxy server (`192.168.83.2`) via SSH.
@@ -29,52 +33,65 @@ If this is a fresh server, you'll need Docker.
     curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh get-docker.sh
     ```
-3.  Add your user to the `docker` group, then log out and back in:
+3.  Add your user to the `docker` group to avoid using `sudo` for every command. **You must log out and log back in for this to take effect.**
     ```bash
     sudo usermod -aG docker $USER
     ```
 
-**Step 3: Create the Caddy Project and `Caddyfile`**
+**Step 3: Create the Caddy Project Structure**
 
-Caddy's configuration is done in a simple text file called a `Caddyfile`.
+We will create a clean structure for all of Caddy's files.
 
-1.  Create a project directory:
+1.  Create a project directory and navigate into it:
     ```bash
-    mkdir ~/caddy-data
-    cd ~/caddy-data
+    mkdir ~/caddy-project
+    cd ~/caddy-project
     ```
 
-2.  Create an empty `Caddyfile` to start:
+2.  Create an empty `Caddyfile` where we will define our proxy rules:
     ```bash
     touch Caddyfile
     ```
 
-**Step 4: Create the `docker-compose.yml` for Caddy with DDNS**
+**Step 4: Create the `Dockerfile` for a Custom Caddy Image**
 
-This is the key step. We will create a `docker-compose.yml` file that tells Docker to build a **custom Caddy image** that includes the `caddy-dynamicdns` plugin.
+This is the robust method to build Caddy with the DDNS plugin.
+
+1.  Create a file named `Dockerfile`:
+    ```bash
+    nano Dockerfile
+    ```
+
+2.  Paste the following content into the file. This is a multi-stage build that creates a clean, small final image.
+    ```dockerfile
+    ARG CADDY_VERSION=2
+
+    FROM caddy:${CADDY_VERSION}-builder AS builder
+
+    RUN xcaddy build \
+        --with github.com/mholt/caddy-dynamicdns
+
+    FROM caddy:${CADDY_VERSION}
+
+    COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+    ```
+
+3.  Save and exit (`Ctrl+X`, `Y`, `Enter`).
+
+**Step 5: Create the `docker-compose.yml` File**
+
+This file will now use our `Dockerfile` to build and run the Caddy container.
 
 1.  Create the Docker Compose file:
     ```bash
     nano docker-compose.yml
     ```
 
-2.  Paste the following configuration into the nano editor. **You will need to replace the placeholders.**
-
+2.  Paste the following configuration. **Remember to replace `your_duckdns_token_here` with your actual token.**
     ```yaml
     services:
-      caddy-builder:
-        image: caddy:2-builder
-        container_name: caddy-builder
-        working_dir: /app
-        volumes:
-          - ./caddy-bin:/app
-        command: |
-          caddy build \
-            --output /app/caddy \
-            --with github.com/mholt/caddy-dynamicdns
-
       caddy:
-        image: caddy:latest
+        build: .
         container_name: caddy
         restart: unless-stopped
         ports:
@@ -82,7 +99,6 @@ This is the key step. We will create a `docker-compose.yml` file that tells Dock
           - "443:443"
           - "443:443/udp"
         volumes:
-          - ./caddy-bin/caddy:/usr/bin/caddy
           - ./Caddyfile:/etc/caddy/Caddyfile
           - ./data:/data
           - ./config:/config
@@ -90,44 +106,39 @@ This is the key step. We will create a `docker-compose.yml` file that tells Dock
           - DUCKDNS_TOKEN=your_duckdns_token_here
     ```
 
-    **Explanation:** This is a multi-stage setup.
-    *   The `caddy-builder` service is temporary. It takes the official Caddy builder image and uses the `caddy build` command to compile a new Caddy binary that includes the `caddy-dynamicdns` plugin. It saves this binary in a local folder called `caddy-bin`.
-    *   The `reverse-proxy` service is the one that will actually run. It uses the standard Caddy image but immediately replaces the standard `caddy` binary with our custom one from the `caddy-bin` folder. It also mounts our `Caddyfile` and sets your DuckDNS token as an environment variable.
+3.  Save and exit.
 
-3.  Save and exit nano (`Ctrl+X`, `Y`, `Enter`).
+**Step 6: Build and Launch Caddy**
 
-**Step 5: Build and Launch Caddy**
+This is now a single, reliable command.
 
-1.  Run the build command first. This will just run the `caddy-builder` service to create your custom binary.
-
+1.  Make sure you are in the `~/caddy-project` directory.
+2.  Run the following command:
     ```bash
-    docker compose up caddy-builder
+    docker compose up --build -d
     ```
-    You will see a lot of output as it compiles. When it's done, you'll have a `caddy-bin` folder.
+    *   `--build`: This tells Docker Compose to build the custom image from your `Dockerfile`.
+    *   `-d`: Runs the container in the background.
 
-2.  Now, launch the main Caddy reverse proxy service:
+Docker will now build your custom image and start the container. You can verify it's running with `docker ps`.
 
-    ```bash
-    docker compose up -d reverse-proxy
-    ```
-    This will start Caddy using your new custom binary.
+**Step 7: Configure your `Caddyfile`**
 
-**Step 6: Configure your `Caddyfile`**
+This is where you define everything Caddy does.
 
-This is where the magic happens. Edit your `Caddyfile` to configure both the DDNS update and your reverse proxy rules.
-
-1.  Open the Caddyfile for editing:
+1.  Open the `Caddyfile` for editing:
     ```bash
     nano Caddyfile
     ```
-2.  Paste in the following configuration. **Replace the example domains and IPs with your own.**
+
+2.  Paste in the following configuration. **Replace all placeholders** (like `your-duckdns-domain.duckdns.org`, `vault.your-noip-domain.ddns.net`, IPs, and ports) with your actual values.
 
     ```caddy
     #
     # Global Options Block
     #
     {
-        # Configure Dynamic DNS
+        # Configure Dynamic DNS to update your DuckDNS domain
         dynamic_dns {
             provider duckdns {$DUCKDNS_TOKEN}
             domains {
@@ -135,38 +146,35 @@ This is where the magic happens. Edit your `Caddyfile` to configure both the DDN
             }
         }
 
-        # Optional: Email for Let's Encrypt account
+        # Email for Let's Encrypt account (important for recovery)
         email your-email@example.com
     }
 
     #
-    # Site Definitions
+    # Site Definitions (Reverse Proxy Rules)
+    # Caddy will AUTOMATICALLY get SSL certificates for these domains.
     #
 
     # Proxy Host for Vaultwarden
+    # Assumes your No-IP domain is a CNAME pointing to your DuckDNS domain.
     vault.your-noip-domain.ddns.net {
         reverse_proxy 192.168.1.6:8080
     }
 
-    # Proxy Host for NPM (if you still run it) or another service
-    npm.your-noip-domain.ddns.net {
-        reverse_proxy 192.168.83.2:81
+    # Proxy Host for Portainer
+    portainer.your-noip-domain.ddns.net {
+        # Portainer's web UI runs on port 9000 by default
+        reverse_proxy 192.168.83.2:9000
     }
 
-    # You can add as many hosts as you want here
+    # Add more hosts as needed...
     ```
 
-    **Explanation:**
-    *   The `dynamic_dns` block tells Caddy to use the DuckDNS provider, use the token from the environment variable, and keep `your-duckdns-domain.duckdns.org` updated.
-    *   Each site block (like `vault.your-noip-domain.ddns.net`) is a reverse proxy rule.
-    *   **Caddy automatically handles HTTPS!** You do not need to tell it to get a certificate. When it sees a public domain name in a site block, it will automatically obtain a trusted Let's Encrypt certificate for it.
+3.  Save and exit.
 
-3.  Save and exit nano.
-
-4.  **Reload Caddy** to apply the new `Caddyfile` configuration:
-
+4.  **Reload Caddy** to apply the new `Caddyfile` configuration. This command is instant and causes no downtime.
     ```bash
-    docker compose exec reverse-proxy caddy reload
+    docker compose exec caddy caddy reload
     ```
 
 ### **The Result**
@@ -174,6 +182,6 @@ This is where the magic happens. Edit your `Caddyfile` to configure both the DDN
 You now have a single, self-updating Caddy container that:
 *   Keeps your DuckDNS IP address current.
 *   Automatically obtains and renews trusted SSL certificates for all your sites.
-*   Acts as a reverse proxy to route traffic to the correct internal service.
+*   Acts as a secure reverse proxy to route traffic to the correct internal service.
 
-This is a much simpler, more elegant, and more modern solution. Remember to configure your Split DNS in OPNsense to point all your public hostnames (`vault.your-noip-domain.ddns.net`, etc.) to your Caddy server's DMZ IP (`192.168.83.2`).
+Remember to configure your **Split DNS (Host Overrides)** in OPNsense to point all your public hostnames (`vault.your-noip-domain.ddns.net`, etc.) to your Caddy server's DMZ IP (`192.168.83.2`).
