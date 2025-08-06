@@ -60,34 +60,34 @@ This is the key step. We will create a `docker-compose.yml` file that tells Dock
 
 2.  Paste the following configuration into the nano editor. **You will need to replace the placeholders.**
 
-    ```
-services:
-  caddy-builder:
-    image: caddy:2-builder
-    container_name: caddy-builder
-    working_dir: /app
-    volumes:
-      - ./caddy-bin:/app
-    command: |
-      caddy build \
-        --output /app/caddy \
-        --with github.com/mholt/caddy-dynamicdns
+    ```yaml
+    services:
+      caddy-builder:
+        image: caddy:2-builder
+        container_name: caddy-builder
+        working_dir: /app
+        volumes:
+          - ./caddy-bin:/app
+        command: |
+          caddy build \
+            --output /app/caddy \
+            --with github.com/mholt/caddy-dynamicdns
 
-  caddy:
-    image: caddy:latest
-    container_name: caddy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
-    volumes:
-      - ./caddy-bin/caddy:/usr/bin/caddy
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./data:/data
-      - ./config:/config
-    environment:
-      - DUCKDNS_TOKEN=your_duckdns_token_here
+      caddy:
+        image: caddy:latest
+        container_name: caddy
+        restart: unless-stopped
+        ports:
+          - "80:80"
+          - "443:443"
+          - "443:443/udp"
+        volumes:
+          - ./caddy-bin/caddy:/usr/bin/caddy
+          - ./Caddyfile:/etc/caddy/Caddyfile
+          - ./data:/data
+          - ./config:/config
+        environment:
+          - DUCKDNS_TOKEN=your_duckdns_token_here
     ```
 
     **Explanation:** This is a multi-stage setup.
