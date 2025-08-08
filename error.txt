@@ -1,33 +1,63 @@
-#
-# Global Options Block
-#
-{
-    # Email for Let's Encrypt account
-    email parkerk6649@protonmail.com
-}
-
-#
-# Site Definitions
-#
-
-# Proxy Host for Vaultwarden
-vault.83.ddns.net {
-    reverse_proxy 192.168.1.6:8080
-    
-    # Tell Caddy HOW to get a certificate for this site
-    tls {
-        dns duckdns {$DUCKDNS_TOKEN}
-    }
-}
-
-# Proxy Host for Portainer
-portainer.83.ddns.net {
-    reverse_proxy 192.168.83.2:9443
-
-    # Tell Caddy HOW to get a certificate for this site
-    tls {
-        dns duckdns {$DUCKDNS_TOKEN}
-    }
-}
-
-# Add more hosts as needed, each with its own tls block...
+homeuser@HomePROXY:~/caddy-project $ docker compose up
+Attaching to caddy
+caddy  | {"level":"info","ts":1754690040.1424847,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754690040.1447053,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754690040.1455216,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754690040.1943064,"msg":"adapted config to JSON","adapter":"caddyfile"}
+caddy  | {"level":"warn","ts":1754690040.195112,"msg":"Caddyfile input is not formatted; run 'caddy fmt --overwrite' to fix inconsistencies","adapter":"caddyfile","file":"/etc/caddy/Caddyfile","line":5}
+caddy  | {"level":"info","ts":1754690040.3297155,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
+caddy  | {"level":"info","ts":1754690040.3323052,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x3b26120"}
+caddy  | {"level":"info","ts":1754690040.3331215,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv0","https_port":443}
+caddy  | {"level":"info","ts":1754690040.3334827,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv0"}
+caddy  | {"level":"info","ts":1754690040.3545709,"logger":"http","msg":"enabling HTTP/3 listener","addr":":443"}
+caddy  | {"level":"info","ts":1754690040.356957,"msg":"failed to sufficiently increase receive buffer size (was: 176 kiB, wanted: 7168 kiB, got: 352 kiB). See https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes for details."}
+caddy  | {"level":"info","ts":1754690040.3673332,"logger":"http.log","msg":"server running","name":"srv0","protocols":["h1","h2","h3"]}
+caddy  | {"level":"warn","ts":1754690040.3698204,"logger":"http","msg":"HTTP/2 skipped because it requires TLS","network":"tcp","addr":":80"}
+caddy  | {"level":"warn","ts":1754690040.370012,"logger":"http","msg":"HTTP/3 skipped because it requires TLS","network":"tcp","addr":":80"}
+caddy  | {"level":"info","ts":1754690040.3700807,"logger":"http.log","msg":"server running","name":"remaining_auto_https_redirects","protocols":["h1","h2","h3"]}
+caddy  | {"level":"info","ts":1754690040.3701572,"logger":"http","msg":"enabling automatic TLS certificate management","domains":["portainer.83.ddns.net","vault.83.ddns.net"]}
+caddy  | {"level":"info","ts":1754690040.40335,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
+caddy  | {"level":"info","ts":1754690040.4035358,"msg":"serving initial configuration"}
+caddy  | {"level":"info","ts":1754690040.4134893,"logger":"tls","msg":"cleaning storage unit","storage":"FileStorage:/data/caddy"}
+caddy  | {"level":"info","ts":1754690040.415036,"logger":"tls.obtain","msg":"acquiring lock","identifier":"portainer.83.ddns.net"}
+caddy  | {"level":"info","ts":1754690040.4174204,"logger":"tls.obtain","msg":"acquiring lock","identifier":"vault.83.ddns.net"}
+caddy  | {"level":"info","ts":1754690040.4365346,"logger":"tls.obtain","msg":"lock acquired","identifier":"portainer.83.ddns.net"}
+caddy  | {"level":"info","ts":1754690040.4375489,"logger":"tls.obtain","msg":"obtaining certificate","identifier":"portainer.83.ddns.net"}
+caddy  | {"level":"info","ts":1754690040.454166,"logger":"tls.obtain","msg":"lock acquired","identifier":"vault.83.ddns.net"}
+caddy  | {"level":"info","ts":1754690040.4553585,"logger":"tls.obtain","msg":"obtaining certificate","identifier":"vault.83.ddns.net"}
+caddy  | {"level":"info","ts":1754690040.4554768,"logger":"tls","msg":"finished cleaning storage units"}
+caddy  | {"level":"info","ts":1754690040.4967341,"logger":"tls.issuance.acme","msg":"creating new account because no account for configured email is known to us","email":"parkerk6649@protonmail.com","ca":"https://acme-v02.api.letsencrypt.org/directory","error":"open /data/caddy/acme/acme-v02.api.letsencrypt.org-directory/users/parkerk6649@protonmail.com/parkerk6649.json: no such file or directory"}
+caddy  | {"level":"info","ts":1754690040.500038,"logger":"tls.issuance.acme","msg":"creating new account because no account for configured email is known to us","email":"parkerk6649@protonmail.com","ca":"https://acme-v02.api.letsencrypt.org/directory","error":"open /data/caddy/acme/acme-v02.api.letsencrypt.org-directory/users/parkerk6649@protonmail.com/parkerk6649.json: no such file or directory"}
+caddy  | {"level":"info","ts":1754690040.5049746,"logger":"tls.issuance.acme","msg":"ACME account has empty status; registering account with ACME server","contact":["mailto:parkerk6649@protonmail.com"],"location":""}
+caddy  | {"level":"info","ts":1754690040.5049746,"logger":"tls.issuance.acme","msg":"ACME account has empty status; registering account with ACME server","contact":["mailto:parkerk6649@protonmail.com"],"location":""}
+caddy  | {"level":"info","ts":1754690040.5239441,"logger":"tls.issuance.acme","msg":"creating new account because no account for configured email is known to us","email":"parkerk6649@protonmail.com","ca":"https://acme-v02.api.letsencrypt.org/directory","error":"open /data/caddy/acme/acme-v02.api.letsencrypt.org-directory/users/parkerk6649@protonmail.com/parkerk6649.json: no such file or directory"}
+caddy  | {"level":"info","ts":1754690041.67248,"logger":"tls.issuance.acme","msg":"new ACME account registered","contact":["mailto:parkerk6649@protonmail.com"],"status":"valid"}
+caddy  | {"level":"info","ts":1754690041.7182465,"logger":"tls.issuance.acme","msg":"waiting on internal rate limiter","identifiers":["vault.83.ddns.net"],"ca":"https://acme-v02.api.letsencrypt.org/directory","account":"parkerk6649@protonmail.com"}
+caddy  | {"level":"info","ts":1754690041.7184706,"logger":"tls.issuance.acme","msg":"done waiting on internal rate limiter","identifiers":["vault.83.ddns.net"],"ca":"https://acme-v02.api.letsencrypt.org/directory","account":"parkerk6649@protonmail.com"}
+caddy  | {"level":"info","ts":1754690041.7205713,"logger":"tls.issuance.acme","msg":"using ACME account","account_id":"https://acme-v02.api.letsencrypt.org/acme/acct/2583236736","account_contact":["mailto:parkerk6649@protonmail.com"]}
+caddy  | {"level":"info","ts":1754690041.7782235,"logger":"tls.issuance.acme","msg":"account has already been registered; reloaded","contact":["mailto:parkerk6649@protonmail.com"],"status":"valid","location":"https://acme-v02.api.letsencrypt.org/acme/acct/2583236736"}
+caddy  | {"level":"info","ts":1754690041.780268,"logger":"tls.issuance.acme","msg":"waiting on internal rate limiter","identifiers":["portainer.83.ddns.net"],"ca":"https://acme-v02.api.letsencrypt.org/directory","account":"parkerk6649@protonmail.com"}
+caddy  | {"level":"info","ts":1754690041.7816303,"logger":"tls.issuance.acme","msg":"done waiting on internal rate limiter","identifiers":["portainer.83.ddns.net"],"ca":"https://acme-v02.api.letsencrypt.org/directory","account":"parkerk6649@protonmail.com"}
+caddy  | {"level":"info","ts":1754690041.7920494,"logger":"tls.issuance.acme","msg":"using ACME account","account_id":"https://acme-v02.api.letsencrypt.org/acme/acct/2583236736","account_contact":["mailto:parkerk6649@protonmail.com"]}
+caddy  | {"level":"info","ts":1754690042.1179094,"msg":"trying to solve challenge","identifier":"vault.83.ddns.net","challenge_type":"dns-01","ca":"https://acme-v02.api.letsencrypt.org/directory"}
+caddy  | {"level":"info","ts":1754690042.3316693,"msg":"trying to solve challenge","identifier":"portainer.83.ddns.net","challenge_type":"dns-01","ca":"https://acme-v02.api.letsencrypt.org/directory"}
+caddy  | {"level":"error","ts":1754690043.3149612,"msg":"cleaning up solver","identifier":"vault.83.ddns.net","challenge_type":"dns-01","error":"no memory of presenting a DNS record for \"_acme-challenge.vault.83.ddns.net\" (usually OK if presenting also failed)","stacktrace":"github.com/mholt/acmez/v3.(*Client).solveChallenges.func1\n\tgithub.com/mholt/acmez/v3@v3.1.2/client.go:318\ngithub.com/mholt/acmez/v3.(*Client).solveChallenges\n\tgithub.com/mholt/acmez/v3@v3.1.2/client.go:363\ngithub.com/mholt/acmez/v3.(*Client).ObtainCertificate\n\tgithub.com/mholt/acmez/v3@v3.1.2/client.go:136\ngithub.com/caddyserver/certmagic.(*ACMEIssuer).doIssue\n\tgithub.com/caddyserver/certmagic@v0.23.0/acmeissuer.go:489\ngithub.com/caddyserver/certmagic.(*ACMEIssuer).Issue\n\tgithub.com/caddyserver/certmagic@v0.23.0/acmeissuer.go:382\ngithub.com/caddyserver/caddy/v2/modules/caddytls.(*ACMEIssuer).Issue\n\tgithub.com/caddyserver/caddy/v2@v2.10.0/modules/caddytls/acmeissuer.go:288\ngithub.com/caddyserver/certmagic.(*Config).obtainCert.func2\n\tgithub.com/caddyserver/certmagic@v0.23.0/config.go:626\ngithub.com/caddyserver/certmagic.doWithRetry\n\tgithub.com/caddyserver/certmagic@v0.23.0/async.go:104\ngithub.com/caddyserver/certmagic.(*Config).obtainCert\n\tgithub.com/caddyserver/certmagic@v0.23.0/config.go:700\ngithub.com/caddyserver/certmagic.(*Config).ObtainCertAsync\n\tgithub.com/caddyserver/certmagic@v0.23.0/config.go:505\ngithub.com/caddyserver/certmagic.(*Config).manageOne.func1\n\tgithub.com/caddyserver/certmagic@v0.23.0/config.go:415\ngithub.com/caddyserver/certmagic.(*jobManager).worker\n\tgithub.com/caddyserver/certmagic@v0.23.0/async.go:73"}
+caddy  | {"level":"error","ts":1754690043.4132335,"msg":"cleaning up solver","identifier":"portainer.83.ddns.net","challenge_type":"dns-01","error":"no memory of presenting a DNS record for \"_acme-challenge.portainer.83.ddns.net\" (usually OK if presenting also failed)","stacktrace":"github.com/mholt/acmez/v3.(*Client).solveChallenges.func1\n\tgithub.com/mholt/acmez/v3@v3.1.2/client.go:318\ngithub.com/mholt/acmez/v3.(*Client).solveChallenges\n\tgithub.com/mholt/acmez/v3@v3.1.2/client.go:363\ngithub.com/mholt/acmez/v3.(*Client).ObtainCertificate\n\tgithub.com/mholt/acmez/v3@v3.1.2/client.go:136\ngithub.com/caddyserver/certmagic.(*ACMEIssuer).doIssue\n\tgithub.com/caddyserver/certmagic@v0.23.0/acmeissuer.go:489\ngithub.com/caddyserver/certmagic.(*ACMEIssuer).Issue\n\tgithub.com/caddyserver/certmagic@v0.23.0/acmeissuer.go:382\ngithub.com/caddyserver/caddy/v2/modules/caddytls.(*ACMEIssuer).Issue\n\tgithub.com/caddyserver/caddy/v2@v2.10.0/modules/caddytls/acmeissuer.go:288\ngithub.com/caddyserver/certmagic.(*Config).obtainCert.func2\n\tgithub.com/caddyserver/certmagic@v0.23.0/config.go:626\ngithub.com/caddyserver/certmagic.doWithRetry\n\tgithub.com/caddyserver/certmagic@v0.23.0/async.go:104\ngithub.com/caddyserver/certmagic.(*Config).obtainCert\n\tgithub.com/caddyserver/certmagic@v0.23.0/config.go:700\ngithub.com/caddyserver/certmagic.(*Config).ObtainCertAsync\n\tgithub.com/caddyserver/certmagic@v0.23.0/config.go:505\ngithub.com/caddyserver/certmagic.(*Config).manageOne.func1\n\tgithub.com/caddyserver/certmagic@v0.23.0/config.go:415\ngithub.com/caddyserver/certmagic.(*jobManager).worker\n\tgithub.com/caddyserver/certmagic@v0.23.0/async.go:73"}
+caddy  | {"level":"error","ts":1754690043.527146,"logger":"tls.obtain","msg":"could not get certificate from issuer","identifier":"vault.83.ddns.net","issuer":"acme-v02.api.letsencrypt.org-directory","error":"[vault.83.ddns.net] solving challenges: presenting for challenge: adding temporary record for zone \"ddns.net.\": DuckDNS request failed, expected (OK) but got (KO), url: [https://www.duckdns.org/update?domains=net&token=d5d32851-0eee-4581-bc3e-a09e2c3c14f9&txt=zfQd4abclGvGq1qYp_oeZdsFDG7mfQS6wVvnS8x2Dsk&verbose=true], body: KO (order=https://acme-v02.api.letsencrypt.org/acme/order/2583236736/415899400266) (ca=https://acme-v02.api.letsencrypt.org/directory)"}
+caddy  | {"level":"error","ts":1754690043.529485,"logger":"tls.obtain","msg":"will retry","error":"[vault.83.ddns.net] Obtain: [vault.83.ddns.net] solving challenges: presenting for challenge: adding temporary record for zone \"ddns.net.\": DuckDNS request failed, expected (OK) but got (KO), url: [https://www.duckdns.org/update?domains=net&token=d5d32851-0eee-4581-bc3e-a09e2c3c14f9&txt=zfQd4abclGvGq1qYp_oeZdsFDG7mfQS6wVvnS8x2Dsk&verbose=true], body: KO (order=https://acme-v02.api.letsencrypt.org/acme/order/2583236736/415899400266) (ca=https://acme-v02.api.letsencrypt.org/directory)","attempt":1,"retrying_in":60,"elapsed":3.075092789,"max_duration":2592000}
+caddy  | {"level":"error","ts":1754690043.6088746,"logger":"tls.obtain","msg":"could not get certificate from issuer","identifier":"portainer.83.ddns.net","issuer":"acme-v02.api.letsencrypt.org-directory","error":"[portainer.83.ddns.net] solving challenges: presenting for challenge: adding temporary record for zone \"ddns.net.\": DuckDNS request failed, expected (OK) but got (KO), url: [https://www.duckdns.org/update?domains=net&token=d5d32851-0eee-4581-bc3e-a09e2c3c14f9&txt=wg_BWpaqXlI4l4MvPChPdh9uCUGYiORC5ivjBwFXF8k&verbose=true], body: KO (order=https://acme-v02.api.letsencrypt.org/acme/order/2583236736/415899401146) (ca=https://acme-v02.api.letsencrypt.org/directory)"}
+caddy  | {"level":"error","ts":1754690043.6092927,"logger":"tls.obtain","msg":"will retry","error":"[portainer.83.ddns.net] Obtain: [portainer.83.ddns.net] solving challenges: presenting for challenge: adding temporary record for zone \"ddns.net.\": DuckDNS request failed, expected (OK) but got (KO), url: [https://www.duckdns.org/update?domains=net&token=d5d32851-0eee-4581-bc3e-a09e2c3c14f9&txt=wg_BWpaqXlI4l4MvPChPdh9uCUGYiORC5ivjBwFXF8k&verbose=true], body: KO (order=https://acme-v02.api.letsencrypt.org/acme/order/2583236736/415899401146) (ca=https://acme-v02.api.letsencrypt.org/directory)","attempt":1,"retrying_in":60,"elapsed":3.172565745,"max_duration":2592000}
+Gracefully Stopping... press Ctrl+C again to force
+ Container caddy  Stopping
+caddy  | {"level":"info","ts":1754690044.096241,"msg":"shutting down apps, then terminating","signal":"SIGTERM"}
+caddy  | {"level":"warn","ts":1754690044.0965557,"msg":"exiting; byeee!! 👋","signal":"SIGTERM"}
+caddy  | {"level":"info","ts":1754690044.0968392,"logger":"http","msg":"servers shutting down with eternal grace period"}
+caddy  | {"level":"info","ts":1754690044.0981097,"logger":"tls.obtain","msg":"releasing lock","identifier":"vault.83.ddns.net"}
+caddy  | {"level":"info","ts":1754690044.1019099,"logger":"tls.obtain","msg":"releasing lock","identifier":"portainer.83.ddns.net"}
+caddy  | {"level":"error","ts":1754690044.102421,"logger":"tls.obtain","msg":"unable to unlock","identifier":"portainer.83.ddns.net","lock_key":"issue_cert_portainer.83.ddns.net","error":"remove /data/caddy/locks/issue_cert_portainer.83.ddns.net.lock: no such file or directory"}
+caddy  | {"level":"error","ts":1754690044.1025794,"logger":"tls","msg":"job failed","error":"portainer.83.ddns.net: obtaining certificate: context canceled"}
+caddy  | {"level":"error","ts":1754690044.1030166,"msg":"unable to clean up lock in storage backend","signal":"SIGTERM","storage":"FileStorage:/data/caddy","lock_key":"issue_cert_vault.83.ddns.net","error":"remove /data/caddy/locks/issue_cert_vault.83.ddns.net.lock: no such file or directory"}
+caddy  | {"level":"info","ts":1754690044.1036952,"logger":"admin","msg":"stopped previous server","address":"localhost:2019"}
+caddy  | {"level":"info","ts":1754690044.1039414,"msg":"shutdown complete","signal":"SIGTERM","exit_code":0}
+ Container caddy  Stopped
+homeuser@HomePROXY:~/caddy-project $ 
