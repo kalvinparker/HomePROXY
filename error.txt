@@ -1,47 +1,33 @@
-omeuser@HomePROXY:~/caddy-project $ docker compose up
-[+] Running 7/7
- ✔ caddy Pulled                                                           24.7s 
-   ✔ 85f3b18f9f5a Pull complete                                            5.2s 
-   ✔ 05b486ad787e Pull complete                                            7.7s 
-   ✔ f4ea30f793f2 Pull complete                                            7.9s 
-   ✔ 1577028b4f9d Pull complete                                           15.9s 
-   ✔ 4f4fb700ef54 Pull complete                                           16.0s 
-   ✔ e2a889f7d504 Pull complete                                           22.3s 
-[+] Running 2/2
- ✔ Network caddy-project_default  Creat...                                 0.5s 
- ✔ Container caddy                Created                                  2.4s 
-Attaching to caddy
-caddy  | {"level":"info","ts":1754689288.224507,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
-caddy  | {"level":"info","ts":1754689288.2261624,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
-caddy  | {"level":"info","ts":1754689288.2310255,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
-caddy  | {"level":"info","ts":1754689288.2320266,"msg":"maxprocs: No GOMAXPROCS change to reset"}
-caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
-caddy exited with code 1
-caddy  | {"level":"info","ts":1754689291.8156674,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
-caddy  | {"level":"info","ts":1754689291.817513,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
-caddy  | {"level":"info","ts":1754689291.8183842,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
-caddy  | {"level":"info","ts":1754689291.8204393,"msg":"maxprocs: No GOMAXPROCS change to reset"}
-caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
-caddy exited with code 1
-caddy  | {"level":"info","ts":1754689295.2809792,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
-caddy  | {"level":"info","ts":1754689295.2860017,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
-caddy  | {"level":"info","ts":1754689295.2897754,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
-caddy  | {"level":"info","ts":1754689295.2926812,"msg":"maxprocs: No GOMAXPROCS change to reset"}
-caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
-caddy exited with code 1
-caddy  | {"level":"info","ts":1754689298.681963,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
-caddy  | {"level":"info","ts":1754689298.683715,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
-caddy  | {"level":"info","ts":1754689298.684494,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
-caddy  | {"level":"info","ts":1754689298.6853967,"msg":"maxprocs: No GOMAXPROCS change to reset"}
-caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
-caddy exited with code 1
-caddy  | {"level":"info","ts":1754689302.1463962,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
-caddy  | {"level":"info","ts":1754689302.149656,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
-caddy  | {"level":"info","ts":1754689302.1502798,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
-caddy  | {"level":"info","ts":1754689302.1523259,"msg":"maxprocs: No GOMAXPROCS change to reset"}
-caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
-Gracefully Stopping... press Ctrl+C again to force
- Container caddy  Stopping
-caddy exited with code 1
- Container caddy  Stopped
-homeuser@HomePROXY:~/caddy-project $ 
+#
+# Global Options Block
+#
+{
+    # Email for Let's Encrypt account
+    email parkerk6649@protonmail.com
+}
+
+#
+# Site Definitions
+#
+
+# Proxy Host for Vaultwarden
+vault.83.ddns.net {
+    reverse_proxy 192.168.1.6:8080
+    
+    # Tell Caddy HOW to get a certificate for this site
+    tls {
+        dns duckdns {$DUCKDNS_TOKEN}
+    }
+}
+
+# Proxy Host for Portainer
+portainer.83.ddns.net {
+    reverse_proxy 192.168.83.2:9443
+
+    # Tell Caddy HOW to get a certificate for this site
+    tls {
+        dns duckdns {$DUCKDNS_TOKEN}
+    }
+}
+
+# Add more hosts as needed, each with its own tls block...
