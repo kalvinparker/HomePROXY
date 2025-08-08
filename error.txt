@@ -1,81 +1,47 @@
-homeuser@HomePROXY:~/caddy-project $ docker compose up
-[+] Running 4/4
- ✔ caddy Pulled                                                           17.8s 
-   ✔ 2723bbe95689 Pull complete                                            5.0s 
-   ✔ 19daf039ecd7 Pull complete                                            7.6s 
-   ✔ 25850e0e1692 Pull complete                                           15.7s 
+omeuser@HomePROXY:~/caddy-project $ docker compose up
+[+] Running 7/7
+ ✔ caddy Pulled                                                           24.7s 
+   ✔ 85f3b18f9f5a Pull complete                                            5.2s 
+   ✔ 05b486ad787e Pull complete                                            7.7s 
+   ✔ f4ea30f793f2 Pull complete                                            7.9s 
+   ✔ 1577028b4f9d Pull complete                                           15.9s 
+   ✔ 4f4fb700ef54 Pull complete                                           16.0s 
+   ✔ e2a889f7d504 Pull complete                                           22.3s 
 [+] Running 2/2
  ✔ Network caddy-project_default  Creat...                                 0.5s 
- ✔ Container caddy                Created                                  1.2s 
+ ✔ Container caddy                Created                                  2.4s 
 Attaching to caddy
-caddy  | {"level":"info","ts":1754687563.176241,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687563.253335,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687563.2575643,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687563.2577336,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687563.2598426,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+caddy  | {"level":"info","ts":1754689288.224507,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754689288.2261624,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754689288.2310255,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754689288.2320266,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
 caddy exited with code 1
-caddy  | {"level":"info","ts":1754687566.618673,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687566.6937377,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687566.7000778,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687566.7003527,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687566.706202,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+caddy  | {"level":"info","ts":1754689291.8156674,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754689291.817513,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754689291.8183842,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754689291.8204393,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
 caddy exited with code 1
-caddy  | {"level":"info","ts":1754687570.415049,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687570.4664366,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687570.4687867,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687570.468927,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687570.4711404,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+caddy  | {"level":"info","ts":1754689295.2809792,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754689295.2860017,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754689295.2897754,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754689295.2926812,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
 caddy exited with code 1
-caddy  | {"level":"info","ts":1754687573.8109572,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687573.8627648,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//127.0.0.1:2019","//localhost:2019","//[::1]:2019"]}
-caddy  | {"level":"info","ts":1754687573.8655655,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687573.8659196,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687573.8692825,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+caddy  | {"level":"info","ts":1754689298.681963,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754689298.683715,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754689298.684494,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754689298.6853967,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
 caddy exited with code 1
-caddy  | {"level":"info","ts":1754687577.1857078,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687577.2362087,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687577.2385294,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687577.2386632,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687577.2405293,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+caddy  | {"level":"info","ts":1754689302.1463962,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754689302.149656,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754689302.1502798,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754689302.1523259,"msg":"maxprocs: No GOMAXPROCS change to reset"}
+caddy  | Error: adapting config using caddyfile: /etc/caddy/Caddyfile:27: parsed 'tls' as a site address, but it is a known directive; directives must appear in a site block
+Gracefully Stopping... press Ctrl+C again to force
+ Container caddy  Stopping
 caddy exited with code 1
-caddy  | {"level":"info","ts":1754687581.1099796,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687581.1636622,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687581.1661856,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687581.166352,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687581.1685183,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
-caddy exited with code 1
-caddy  | {"level":"info","ts":1754687586.6494498,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687586.7021914,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687586.7046776,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687586.7048829,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687586.7069354,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
-caddy exited with code 1
-caddy  | {"level":"info","ts":1754687595.4195309,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687595.4719217,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687595.4751203,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687595.4753816,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687595.4775639,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
-caddy exited with code 1
-caddy  | {"level":"info","ts":1754687610.562702,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687610.6239824,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687610.6270018,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687610.6274033,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687610.6333387,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
-caddy exited with code 1
-caddy  | {"level":"info","ts":1754687639.1774359,"logger":"docker-proxy","msg":"Running caddy proxy server"}
-caddy  | {"level":"info","ts":1754687639.2388272,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
-caddy  | {"level":"info","ts":1754687639.242006,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754687639.2421992,"logger":"docker-proxy","msg":"Running caddy proxy controller"}
-caddy  | {"level":"error","ts":1754687639.246093,"logger":"docker-proxy","msg":"Docker ping failed","error":"Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"}
-caddy  | Error: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
-caddy exited with code 1
-
+ Container caddy  Stopped
+homeuser@HomePROXY:~/caddy-project $ 
