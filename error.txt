@@ -1,41 +1,37 @@
 homeuser@HomePROXY:~/caddy-project $ docker compose up
-[+] Running 2/2
- ✔ Network caddy-project_default  Creat...                                 0.5s 
- ✔ Container caddy                Created                                  0.6s 
 Attaching to caddy
-caddy  | {"level":"info","ts":1754690956.3927572,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
-caddy  | {"level":"info","ts":1754690956.3944705,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
-caddy  | {"level":"info","ts":1754690956.3950958,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
-caddy  | {"level":"info","ts":1754690956.413653,"msg":"adapted config to JSON","adapter":"caddyfile"}
-caddy  | {"level":"warn","ts":1754690956.415067,"msg":"Caddyfile input is not formatted; run 'caddy fmt --overwrite' to fix inconsistencies","adapter":"caddyfile","file":"/etc/caddy/Caddyfile","line":3}
-caddy  | {"level":"info","ts":1754690956.4898,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//127.0.0.1:2019","//localhost:2019","//[::1]:2019"]}
-caddy  | {"level":"info","ts":1754690956.4935706,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x4a16000"}
-caddy  | {"level":"info","ts":1754690956.496648,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv0","https_port":443}
-caddy  | {"level":"info","ts":1754690956.4974089,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv0"}
-caddy  | {"level":"info","ts":1754690956.5062099,"logger":"http","msg":"enabling HTTP/3 listener","addr":":443"}
-caddy  | {"level":"info","ts":1754690956.50716,"msg":"failed to sufficiently increase receive buffer size (was: 176 kiB, wanted: 7168 kiB, got: 352 kiB). See https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes for details."}
-caddy  | {"level":"info","ts":1754690956.5083108,"logger":"http.log","msg":"server running","name":"srv0","protocols":["h1","h2","h3"]}
-caddy  | {"level":"warn","ts":1754690956.509216,"logger":"http","msg":"HTTP/2 skipped because it requires TLS","network":"tcp","addr":":80"}
-caddy  | {"level":"warn","ts":1754690956.5093293,"logger":"http","msg":"HTTP/3 skipped because it requires TLS","network":"tcp","addr":":80"}
-caddy  | {"level":"info","ts":1754690956.5093708,"logger":"http.log","msg":"server running","name":"remaining_auto_https_redirects","protocols":["h1","h2","h3"]}
-caddy  | {"level":"info","ts":1754690956.5094292,"logger":"http","msg":"enabling automatic TLS certificate management","domains":["83-validator.duckdns.org"]}
-caddy  | {"level":"info","ts":1754690956.5143871,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
-caddy  | {"level":"info","ts":1754690956.515675,"msg":"serving initial configuration"}
-caddy  | {"level":"info","ts":1754690956.5232024,"logger":"tls","msg":"storage cleaning happened too recently; skipping for now","storage":"FileStorage:/data/caddy","instance":"037846be-5c2d-481b-b0e9-bc255060d512","try_again":1754777356.5231826,"try_again_in":86399.999989166}
-caddy  | {"level":"info","ts":1754690956.527098,"logger":"tls","msg":"finished cleaning storage units"}
-caddy  | {"level":"info","ts":1754690956.5296319,"logger":"tls.obtain","msg":"acquiring lock","identifier":"83-validator.duckdns.org"}
-caddy  | {"level":"info","ts":1754690956.5451949,"logger":"tls.obtain","msg":"lock acquired","identifier":"83-validator.duckdns.org"}
-caddy  | {"level":"info","ts":1754690956.5463338,"logger":"tls.obtain","msg":"obtaining certificate","identifier":"83-validator.duckdns.org"}
-caddy  | {"level":"info","ts":1754690956.6036115,"logger":"tls.issuance.acme","msg":"waiting on internal rate limiter","identifiers":["83-validator.duckdns.org"],"ca":"https://acme-v02.api.letsencrypt.org/directory","account":"parkerk6649@protonmail.com"}
-caddy  | {"level":"info","ts":1754690956.603865,"logger":"tls.issuance.acme","msg":"done waiting on internal rate limiter","identifiers":["83-validator.duckdns.org"],"ca":"https://acme-v02.api.letsencrypt.org/directory","account":"parkerk6649@protonmail.com"}
-caddy  | {"level":"info","ts":1754690956.6041994,"logger":"tls.issuance.acme","msg":"using ACME account","account_id":"https://acme-v02.api.letsencrypt.org/acme/acct/2583236736","account_contact":["mailto:parkerk6649@protonmail.com"]}
-caddy  | {"level":"info","ts":1754690957.9273226,"msg":"trying to solve challenge","identifier":"83-validator.duckdns.org","challenge_type":"dns-01","ca":"https://acme-v02.api.letsencrypt.org/directory"}
-Gracefully Stopping... press Ctrl+C again to force
- Container caddy  Stopping
-caddy  | {"level":"info","ts":1754690960.7342124,"msg":"shutting down apps, then terminating","signal":"SIGTERM"}
-caddy  | {"level":"warn","ts":1754690960.7347922,"msg":"exiting; byeee!! 👋","signal":"SIGTERM"}
-caddy  | {"level":"info","ts":1754690960.7350526,"logger":"http","msg":"servers shutting down with eternal grace period"}
-caddy  | {"level":"info","ts":1754690960.7371595,"logger":"admin","msg":"stopped previous server","address":"localhost:2019"}
-caddy  | {"level":"info","ts":1754690960.7374213,"msg":"shutdown complete","signal":"SIGTERM","exit_code":0}
- Container caddy  Stopped
-homeuser@HomePROXY:~/caddy-project $ 
+caddy  | {"level":"info","ts":1754691433.2304668,"msg":"maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined"}
+caddy  | {"level":"info","ts":1754691433.2331023,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":869190451,"previous":9223372036854775807}
+caddy  | {"level":"info","ts":1754691433.2350836,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+caddy  | {"level":"info","ts":1754691433.2546082,"msg":"adapted config to JSON","adapter":"caddyfile"}
+caddy  | {"level":"warn","ts":1754691433.2550526,"msg":"Caddyfile input is not formatted; run 'caddy fmt --overwrite' to fix inconsistencies","adapter":"caddyfile","file":"/etc/caddy/Caddyfile","line":3}
+caddy  | {"level":"info","ts":1754691433.320829,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
+caddy  | {"level":"info","ts":1754691433.32391,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x3026540"}
+caddy  | {"level":"info","ts":1754691433.3281376,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv0","https_port":443}
+caddy  | {"level":"info","ts":1754691433.3283887,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv0"}
+caddy  | {"level":"info","ts":1754691433.338582,"logger":"http","msg":"enabling HTTP/3 listener","addr":":443"}
+caddy  | {"level":"info","ts":1754691433.3396907,"msg":"failed to sufficiently increase receive buffer size (was: 176 kiB, wanted: 7168 kiB, got: 352 kiB). See https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes for details."}
+caddy  | {"level":"info","ts":1754691433.3460507,"logger":"http.log","msg":"server running","name":"srv0","protocols":["h1","h2","h3"]}
+caddy  | {"level":"warn","ts":1754691433.3473797,"logger":"http","msg":"HTTP/2 skipped because it requires TLS","network":"tcp","addr":":80"}
+caddy  | {"level":"warn","ts":1754691433.3479443,"logger":"http","msg":"HTTP/3 skipped because it requires TLS","network":"tcp","addr":":80"}
+caddy  | {"level":"info","ts":1754691433.3480127,"logger":"http.log","msg":"server running","name":"remaining_auto_https_redirects","protocols":["h1","h2","h3"]}
+caddy  | {"level":"info","ts":1754691433.3481083,"logger":"http","msg":"enabling automatic TLS certificate management","domains":["83-validator.duckdns.org"]}
+caddy  | {"level":"info","ts":1754691433.3642635,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
+caddy  | {"level":"info","ts":1754691433.364526,"msg":"serving initial configuration"}
+caddy  | {"level":"info","ts":1754691433.3831892,"logger":"tls.obtain","msg":"acquiring lock","identifier":"83-validator.duckdns.org"}
+caddy  | {"level":"info","ts":1754691433.3836005,"logger":"tls","msg":"storage cleaning happened too recently; skipping for now","storage":"FileStorage:/data/caddy","instance":"037846be-5c2d-481b-b0e9-bc255060d512","try_again":1754777833.383581,"try_again_in":86399.999989844}
+caddy  | {"level":"info","ts":1754691433.3878202,"logger":"tls","msg":"finished cleaning storage units"}
+caddy  | {"level":"info","ts":1754691433.3990436,"logger":"tls.obtain","msg":"lock acquired","identifier":"83-validator.duckdns.org"}
+caddy  | {"level":"info","ts":1754691433.4009979,"logger":"tls.obtain","msg":"obtaining certificate","identifier":"83-validator.duckdns.org"}
+caddy  | {"level":"info","ts":1754691433.448621,"logger":"tls.issuance.acme","msg":"waiting on internal rate limiter","identifiers":["83-validator.duckdns.org"],"ca":"https://acme-v02.api.letsencrypt.org/directory","account":"parkerk6649@protonmail.com"}
+caddy  | {"level":"info","ts":1754691433.4491527,"logger":"tls.issuance.acme","msg":"done waiting on internal rate limiter","identifiers":["83-validator.duckdns.org"],"ca":"https://acme-v02.api.letsencrypt.org/directory","account":"parkerk6649@protonmail.com"}
+caddy  | {"level":"info","ts":1754691433.4493935,"logger":"tls.issuance.acme","msg":"using ACME account","account_id":"https://acme-v02.api.letsencrypt.org/acme/acct/2583236736","account_contact":["mailto:parkerk6649@protonmail.com"]}
+caddy  | {"level":"info","ts":1754691434.8607457,"msg":"trying to solve challenge","identifier":"83-validator.duckdns.org","challenge_type":"dns-01","ca":"https://acme-v02.api.letsencrypt.org/directory"}
+caddy  | {"level":"info","ts":1754691441.2458289,"msg":"authorization finalized","identifier":"83-validator.duckdns.org","authz_status":"valid"}
+caddy  | {"level":"info","ts":1754691441.2460535,"msg":"validations succeeded; finalizing order","order":"https://acme-v02.api.letsencrypt.org/acme/order/2583236736/415903453896"}
+caddy  | {"level":"info","ts":1754691443.9563408,"msg":"got renewal info","names":["83-validator.duckdns.org"],"window_start":1759795375,"window_end":1759950825,"selected_time":1759833255,"recheck_after":1754713043.9561963,"explanation_url":""}
+caddy  | {"level":"info","ts":1754691444.2843533,"msg":"got renewal info","names":["83-validator.duckdns.org"],"window_start":1759795375,"window_end":1759950825,"selected_time":1759839834,"recheck_after":1754713044.2842412,"explanation_url":""}
+caddy  | {"level":"info","ts":1754691444.2848115,"msg":"successfully downloaded available certificate chains","count":2,"first_url":"https://acme-v02.api.letsencrypt.org/acme/cert/05abac15754b4c11798c1c3720ffdbec8800"}
+caddy  | {"level":"info","ts":1754691444.31959,"logger":"tls.obtain","msg":"certificate obtained successfully","identifier":"83-validator.duckdns.org","issuer":"acme-v02.api.letsencrypt.org-directory"}
+caddy  | {"level":"info","ts":1754691444.3225875,"logger":"tls.obtain","msg":"releasing lock","identifier":"83-validator.duckdns.org"}
+caddy  | {"level":"warn","ts":1754691444.3399096,"logger":"tls","msg":"stapling OCSP","error":"no OCSP stapling for [83-validator.duckdns.org]: no OCSP server specified in certificate","identifiers":["83-validator.duckdns.org"]}
